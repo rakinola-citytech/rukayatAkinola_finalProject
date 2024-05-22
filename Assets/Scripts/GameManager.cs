@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public Transform startGrid;
 
     //public player life
-    int life = 0;
+    public int life = 0;
     public GameObject life_one;
     public GameObject life_two;
 
@@ -64,9 +64,10 @@ public class GameManager : MonoBehaviour
     public float cameraMoveDelay = 2;
 
     //audioSource
-    AudioSource hitAudio;
+    AudioSource gameAudio;
     public AudioClip hitClip;
     public AudioClip safeClip;
+    public AudioClip dropClip;
 
     //game over, reload scene
     string currentSceneName;
@@ -82,7 +83,7 @@ public class GameManager : MonoBehaviour
         holeSize_x *= (holePrefab.GetComponent<CircleCollider2D>().radius);
         holeSize_y *= (holePrefab.GetComponent<CircleCollider2D>().radius);
 
-        hitAudio = GetComponent<AudioSource>();
+        gameAudio = GetComponent<AudioSource>();
 
         currentSceneName = SceneManager.GetActiveScene().name;
 
@@ -173,6 +174,7 @@ public class GameManager : MonoBehaviour
         else if (life == 2)
         {
             Destroy(life_two);
+            gameAudio.PlayOneShot(dropClip);
         }
 
 
@@ -216,7 +218,7 @@ public class GameManager : MonoBehaviour
             // hit and consequences
             Debug.Log("Hit");
             life += 1;
-            hitAudio.PlayOneShot(hitClip);
+            gameAudio.PlayOneShot(hitClip);
 
 
             //failed lerping attempt for glovePrefab
@@ -229,7 +231,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            hitAudio.PlayOneShot(safeClip);
+            gameAudio.PlayOneShot(safeClip);
         }
 
     }

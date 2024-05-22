@@ -150,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 271022486}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.9, y: -4.9, z: -0.105089426}
+  m_LocalPosition: {x: 0, y: 0, z: -0.105089426}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -171,6 +171,7 @@ MonoBehaviour:
   holeFolder: {fileID: 574764333}
   camTransform: {fileID: 519420032}
   startGrid: {fileID: 574764333}
+  life: 0
   life_one: {fileID: 1405762227}
   life_two: {fileID: 1224572765}
   holePrefab: {fileID: 2199543997324876944, guid: 0259319ab0bb54cc9a90a821ed5dd109, type: 3}
@@ -182,6 +183,7 @@ MonoBehaviour:
   cameraMoveDelay: 1
   hitClip: {fileID: 8300000, guid: f3a5e5bf1b29942f89f84639877515a5, type: 3}
   safeClip: {fileID: 8300000, guid: 23b6d5499660944d2afcb6ec64b66ffc, type: 3}
+  dropClip: {fileID: 8300000, guid: 9e5fd726ea8bb41659735bd2fff53083, type: 3}
   win: {fileID: 1172014632}
   lose: {fileID: 607825522}
 --- !u!82 &271022490
@@ -194,7 +196,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f3a5e5bf1b29942f89f84639877515a5, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -208,9 +210,9 @@ AudioSource:
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
+  BypassEffects: 1
+  BypassListenerEffects: 1
+  BypassReverbZones: 1
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -797,7 +799,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 20, y: 20}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -892,10 +894,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f46b5a0e15c6c46b794400124a51c0dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionGif: {fileID: 21300000, guid: d5b8a42ee4bd445a3ae355952cfdcd3d, type: 3}
+  bombAnim: {fileID: 886124932}
+  ground: {fileID: 1761087778}
   gm: {fileID: 271022489}
-  dropAudio: {fileID: 8300000, guid: 05b36e2ce90e04556b4bbdde311d2d07, type: 3}
-  explosionAudio: {fileID: 8300000, guid: 6a4438822b3a64fe599caf7c8e262418, type: 3}
 --- !u!114 &886124931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -920,9 +921,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 886124925}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f9a548578c99e4d549e6c460f420515a, type: 2}
+  m_Controller: {fileID: 9100000, guid: 787fdc1f83b2e4291b93291ab3e47e21, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1507,7 +1508,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.6087626}

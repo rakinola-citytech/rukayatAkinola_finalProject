@@ -7,37 +7,44 @@ public class HazardScript : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    //explosion animation
-    SpriteRenderer sr;
-    public Sprite explosionGif;
+    //explosion animation & previous sprite change
+    public Animator bombAnim;
+    public GameObject ground;
+
+    //SpriteRenderer sr;
+    //public Sprite explosionGif;
 
     //audioSources
-    AudioSource playAudio;
+    //AudioSource playAudio;
     public GameManager gm;
-    public AudioClip dropAudio;
-    public AudioClip explosionAudio;
-
+    //public AudioClip explosionAudio;
 
     void Start()
     {
-        sr = GetComponent<SpriteRenderer>();
-        playAudio = GetComponent<AudioSource>();
+        //sr = GetComponent<SpriteRenderer>();
+        //playAudio = GetComponent<AudioSource>();
+        bombAnim.SetBool("explode", false);
         
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        if (collision.tag == "ground")
+
+        //explode
+        if (collision.gameObject == ground)
         {
-            playAudio.PlayOneShot(dropAudio);
-            playAudio.PlayOneShot(explosionAudio);
-            sr.sprite = explosionGif;
+            //playAudio.PlayOneShot(explosionAudio);
+            bombAnim.SetBool("explode", true);
+          
+            //sr.sprite = explosionGif;
             gm.GameOver();
         }
     }
